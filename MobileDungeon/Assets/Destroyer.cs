@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
+    private void Start()
+    {
+        Destroy(this.gameObject, 2f);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         Destroy(other.gameObject);
         Debug.Log("Colision");
     }
-    public void OnTriggerEnter2D(Collider other)
-    {
-        Debug.Log("Colisionando");
-    }
+    
 }

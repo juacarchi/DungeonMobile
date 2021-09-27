@@ -8,10 +8,11 @@ public class RoomSpawner : MonoBehaviour
     public int openingDirection; //1--> Need Bottom Door //2--> Need Top//3--> Need Left //4--> Need Right
     int rnd;
     bool spawned = false;
-
+    public float waitTime = 4f;
 
     private void Start()
     {
+        Destroy(gameObject, waitTime);
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         Invoke("Spawn", 0.1f);
     }
