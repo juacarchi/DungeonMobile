@@ -10,5 +10,6 @@ public class Weapon : ScriptableObject
     public float timeBetweenShooting, range, reloadTime, timeBetweenShots;
     public bool ShootDuringAim;
     public GameObject bullets;
+    public Sprite spriteWeapon;
     
 }

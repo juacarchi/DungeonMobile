@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GunSystem : MonoBehaviour
 {
-    [SerializeField] Weapon actualWeapon;
+    Weapon actualWeapon;
     int damage;
     float timeBetweenShooting, range, reloadTime, timeBetweenShots;
     int magazineSize, bulletsPerTap;
@@ -30,6 +30,12 @@ public class GunSystem : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+    }
+    private void Start()
+    {
+        actualWeapon = PlayerManager.instance.GetWeapon();
+
         damage = actualWeapon.damage;
         timeBetweenShooting = actualWeapon.timeBetweenShooting;
         range = actualWeapon.range;
@@ -41,10 +47,8 @@ public class GunSystem : MonoBehaviour
 
         bulletsLeft = magazineSize;
         readyToShoot = true;
-
-
     }
-    
+
     //JOYSTICK DETECTION
     public void OnPointerUp()
     {
@@ -70,12 +74,24 @@ public class GunSystem : MonoBehaviour
             if (rayHit.distance < range)
             {
                 //ACCEDER AL COMPONENTE DEL ENEMIGO Y TAKE DAMAGE
-                
+                Debug.Log("Golpea enemigo");
             }
         }
         //GRAPHICS: Instantiate 
-        GameObject bullet = Instantiate(bullets, canyon.transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().AddForce(canyon.transform.right*10,ForceMode2D.Impulse);
+        GameObject bullet = Instantiate(bullets, canyon.transform.position, canyon.transform.rotation);
+        if (bullet.GetComponentInChildren<Rigidbody2D>() != null)
+        {
+            Rigidbody2D[] rb2ds = bullet.GetComponentsInChildren<Rigidbody2D>();
+            for (int i = 0; i < rb2ds.Length; i++)
+            {
+                rb2ds[i].AddForce(rb2ds[i].gameObject.transform.right * 10, ForceMode2D.Impulse);
+            }
+        }
+        else
+        {
+            bullet.GetComponent<Rigidbody2D>().AddForce(canyon.transform.right * 10, ForceMode2D.Impulse);
+        }
+        
 
         bulletsLeft--;
         bulletsShot--;
@@ -110,5 +126,18 @@ public class GunSystem : MonoBehaviour
             shooting = false;
         }
         Debug.DrawRay(canyon.transform.position, canyon.transform.right,Color.blue);
+    }
+    public void ChangeWeapon()
+    {
+        actualWeapon = PlayerManager.instance.GetWeapon();
+
+        damage = actualWeapon.damage;
+        timeBetweenShooting = actualWeapon.timeBetweenShooting;
+        range = actualWeapon.range;
+        reloadTime = actualWeapon.reloadTime;
+        timeBetweenShots = actualWeapon.timeBetweenShots;
+        magazineSize = actualWeapon.magazineSize;
+        bulletsPerTap = actualWeapon.bulletsPerTap;
+        bullets = actualWeapon.bullets;
     }
 }

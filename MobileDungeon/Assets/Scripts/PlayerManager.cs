@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+    [SerializeField] Weapon actualWeapon;
+    [SerializeField] SpriteRenderer spriteWeapon;
     bool isAiming;
     private void Awake()
     {
@@ -25,5 +27,14 @@ public class PlayerManager : MonoBehaviour
     public void SetIsAiming(bool isAiming)
     {
         this.isAiming = isAiming;
+    }
+    public void SetWeapon(Weapon actualWeapon)
+    {
+        this.actualWeapon = actualWeapon;
+        spriteWeapon.sprite = actualWeapon.spriteWeapon;
+    }
+    public Weapon GetWeapon()
+    {
+        return actualWeapon;
     }
 }

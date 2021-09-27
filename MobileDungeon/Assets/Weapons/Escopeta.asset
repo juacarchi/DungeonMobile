@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aac7ff535e6515459504fcf2b483bc2, type: 3}
-  m_Name: Arma
+  m_Name: Escopeta
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Escopeta
   damage: 20
-  bulletsPerTap: 2
-  magazineSize: 6
+  bulletsPerTap: 1
+  magazineSize: 4
   timeBetweenShooting: 0.1
   range: 100
-  reloadTime: 0.2
-  timeBetweenShots: 0.1
+  reloadTime: 0.3
+  timeBetweenShots: 0.08
   ShootDuringAim: 0
-  bullets: {fileID: 638479365677324633, guid: 7724150674eb1c94e958355ccffed69f, type: 3}
-  spriteWeapon: {fileID: 21300000, guid: 42b3b59197227c44ab65f25c558c4162, type: 3}
+  bullets: {fileID: 638479365677324633, guid: c8ead98356a078942814fcac5dfef1a4, type: 3}
+  spriteWeapon: {fileID: 21300000, guid: 8b5a3960ff1238b4c8240ee2cf30a9a5, type: 3}
