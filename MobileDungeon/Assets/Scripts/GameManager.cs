@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
-    public NavMeshSurface2d nav;
-    void Start()
-    {
-        nav.BuildNavMesh();
-    }
+   // float waitTime = 4;
+   // public NavMeshSurface2d nav;
+   // void Start()
+   // {
+   //     Invoke("GenerateNavMesh", waitTime);
+   // }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   //void GenerateNavMesh()
+   // {
+   //     nav.BuildNavMesh();
+   // }
 }
