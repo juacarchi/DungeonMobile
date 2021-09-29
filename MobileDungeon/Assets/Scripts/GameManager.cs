@@ -4,15 +4,29 @@ using UnityEngine;
 using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
-   // float waitTime = 4;
-   // public NavMeshSurface2d nav;
-   // void Start()
-   // {
-   //     Invoke("GenerateNavMesh", waitTime);
-   // }
+    public static GameManager instance;
+    float waitTime = 4;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
-   //void GenerateNavMesh()
-   // {
-   //     nav.BuildNavMesh();
-   // }
+    void Start()
+    {
+        PlayerManager.instance.PlayerCanMove = false;
+        Invoke("StartGame", waitTime);
+    }
+    
+    void StartGame()
+    {
+        PlayerManager.instance.PlayerCanMove = true;
+    }
+   
 }

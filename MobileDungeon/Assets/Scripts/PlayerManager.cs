@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Weapon actualWeapon;
     [SerializeField] SpriteRenderer spriteWeapon;
     bool isAiming;
+    [SerializeField] bool playerCanMove;
     private void Awake()
     {
         if (instance == null)
@@ -19,7 +20,11 @@ public class PlayerManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
+    public bool PlayerCanMove
+    {
+        get { return playerCanMove; }
+        set { playerCanMove = value; }
+    }
     public bool GetIsAiming()
     {
         return isAiming;

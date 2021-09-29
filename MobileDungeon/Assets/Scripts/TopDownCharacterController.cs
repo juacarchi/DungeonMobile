@@ -22,36 +22,39 @@ public class TopDownCharacterController : MonoBehaviour
         move.x = joystickMovement.Horizontal;
         move.y = joystickMovement.Vertical;
         move.Normalize();
-        if (move.x < 0)
-        {
-            rendererPlayer.flipX = true;
-            if (!isAiming)
+       
+            if (move.x < 0)
             {
-                weapon.transform.localScale = new Vector2(1, -1);
-            }
-        }
-        else if (move.x > 0)
-        {
-            rendererPlayer.flipX = false;
-            if (!isAiming)
-            {
-                weapon.transform.localScale = new Vector2(1, 1);
-            }
-        }
-        else
-        {
-            if (!isAiming)
-            {
-                if (rendererPlayer.flipX)
+                rendererPlayer.flipX = true;
+                if (!isAiming)
                 {
-                    weapon.transform.localScale = new Vector2(-1, 1);
+                    weapon.transform.localScale = new Vector2(1, -1);
                 }
-                else
+            }
+            else if (move.x > 0)
+            {
+                rendererPlayer.flipX = false;
+                if (!isAiming)
                 {
                     weapon.transform.localScale = new Vector2(1, 1);
                 }
             }
-        }
+            else
+            {
+                if (!isAiming)
+                {
+                    if (rendererPlayer.flipX)
+                    {
+                        weapon.transform.localScale = new Vector2(-1, 1);
+                    }
+                    else
+                    {
+                        weapon.transform.localScale = new Vector2(1, 1);
+                    }
+                }
+            }
+        
+  
     }
     private void FixedUpdate()
     {
@@ -59,6 +62,10 @@ public class TopDownCharacterController : MonoBehaviour
         {
             weapon.transform.right = move;
         }
-        rb2D.MovePosition(rb2D.position + move * speed * Time.fixedDeltaTime);
+        if (PlayerManager.instance.PlayerCanMove)
+        {
+            rb2D.MovePosition(rb2D.position + move * speed * Time.fixedDeltaTime);
+        }
+        
     }
 }
