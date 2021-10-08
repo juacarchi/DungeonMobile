@@ -7,6 +7,16 @@ TagManager:
   - Weapon
   - SpawnPoint
   - Rooms
+  - BulletEnemy
+  - B
+  - L
+  - LR
+  - LT
+  - R
+  - RB
+  - T
+  - TB
+  - TR
   layers:
   - Default
   - TransparentFX
